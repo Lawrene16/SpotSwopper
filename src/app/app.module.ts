@@ -7,6 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
+// import { IonicRatingModule } from 'ionic-rating';
+
+import { IonicRatingModule } from 'ionic4-rating';
+import { StarRatingModule } from 'ionic4-star-rating';
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -19,8 +23,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { AuthService } from './auth.service';
-import { Facebook } from '@ionic-native/facebook/ngx';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
+// import { Facebook } from '@ionic-native/facebook';
+// import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
@@ -45,6 +49,8 @@ firebase.initializeApp(firebaseconfig);
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    // IonicRa,
+    StarRatingModule,
     HttpClientModule,    
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseconfig),
@@ -55,8 +61,8 @@ firebase.initializeApp(firebaseconfig);
     StatusBar,
     SplashScreen,
     Geolocation,
-    Facebook,
-    GooglePlus,
+    // Facebook,
+    // GooglePlus,
     AuthService,
     SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
