@@ -58,7 +58,7 @@ export class PurchasespotPage implements OnInit {
         this.sellername = snap.val().name
       });
 
-    // My Details
+    // User Details
     this.storage.get('userdetails').then((userdetails) => {
       this.userdetails = userdetails;
       this.firedata.ref('/users').child(userdetails.uid).once('value').then(snap => {
@@ -133,7 +133,9 @@ export class PurchasespotPage implements OnInit {
     });
   }
 
-  makePost(cardtoken, load){
+  makePost(cardtoken, load) {
+    
+    // ----- main payment logic ------
     var url = this.baseUrl;
     let postData = new FormData();
     postData.append('stripeToken', cardtoken);
@@ -145,7 +147,8 @@ export class PurchasespotPage implements OnInit {
       var buyersuid = this.firedata.ref('/allpins').child(this.spotuid).push().key;
       var transactionkey = this.firedata.ref('/users').child(firebase.auth().currentUser.uid).push().key;
 
-      // Update the pin buyers with user'suid
+
+      //  -----------All that happens after payment-----------
       this.firedata.ref('/allpins').child(this.spotuid).
       child('buyers').child(buyersuid).set(firebase.auth().currentUser.uid).then(() => {
 

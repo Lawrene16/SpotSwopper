@@ -76,18 +76,22 @@ export class AppComponent {
   }
 
   checkPage(p) {
-    if (p.title == "Logout") {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.router.navigateByUrl(p.url);
-        });
-    } else if (p.title == "Share") {
+    
+      
+    if (p.title == "Share") {
       this.regularShare();
     } else {
       this.router.navigateByUrl(p.url);
     }
+  }
+
+  logout() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        this.router.navigateByUrl('/login');
+      });
   }
 
   compilemsg(): string {

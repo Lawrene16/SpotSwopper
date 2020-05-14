@@ -78,59 +78,59 @@ export class LoginPage implements OnInit {
   }
 
   fblogin() {
-    // this.auth.facebookNativeLogin().then((res:any) => {
-    //   this.loadingCtrl.create({
-    //     message: 'Logging you in',
-    //   }).then((load) =>{
-    //       load.present();
-    //       this.checkIfUserExits(res.uid).then((isthereuser) => {
-    //         // this.presentToast(isthereuser)
-    //         switch (isthereuser) {
-    //           case true:
-    //             this.loadUserDetails(load);
-    //             break;
-    //           case false:
-    //             this.storeUserStuff(res.displayName, res.email, res.photoURL, load);
-    //             break;
-    //         }
-    //       }).catch((err) => {
-    //         console.log(err)
-    //         this.presentToast(err);
-    //       });
-    //   });
-    // }).catch((err) => {
-    //   this.presentToast(err);
-    //   console.log(err);
-    // });
+    this.auth.facebookNativeLogin().then((res:any) => {
+      this.loadingCtrl.create({
+        message: 'Logging you in',
+      }).then((load) =>{
+          load.present();
+          this.checkIfUserExits(res.uid).then((isthereuser) => {
+            // this.presentToast(isthereuser)
+            switch (isthereuser) {
+              case true:
+                this.loadUserDetails(load);
+                break;
+              case false:
+                this.storeUserStuff(res.displayName, res.email, res.photoURL, load);
+                break;
+            }
+          }).catch((err) => {
+            console.log(err)
+            this.presentToast(err);
+          });
+      });
+    }).catch((err) => {
+      this.presentToast(err);
+      console.log(err);
+    });
   }
 
   googleLogin(){
-    // this.auth.googleNativeLogin().then((res:any) =>{
+    this.auth.googleNativeLogin().then((res:any) =>{
 
-    //   console.log(res);
-    //   this.loadingCtrl.create({
-    //     message: 'Logging you in',
-    //   }).then((load) =>{
-    //     load.present();
-    //     this.checkIfUserExits(res.uid).then((isthereuser) =>{
-    //       // this.presentToast(isthereuser)
-    //         switch (isthereuser) {
-    //           case true:
-    //             this.loadUserDetails(load);
-    //             break;
-    //           case false:
-    //             this.storeUserStuff(res.displayName, res.email, res.photoURL, load);
-    //             break;
-    //         }
-    //       }).catch((err) => {
-    //         this.presentToast(err);
-    //         console.log(err);
-    //       });
-    //   })
-    // }).catch((err) => {
-    //   this.presentToast(err)
-    //   console.log(err);
-    // });
+      console.log(res);
+      this.loadingCtrl.create({
+        message: 'Logging you in',
+      }).then((load) =>{
+        load.present();
+        this.checkIfUserExits(res.uid).then((isthereuser) =>{
+          // this.presentToast(isthereuser)
+            switch (isthereuser) {
+              case true:
+                this.loadUserDetails(load);
+                break;
+              case false:
+                this.storeUserStuff(res.displayName, res.email, res.photoURL, load);
+                break;
+            }
+          }).catch((err) => {
+            this.presentToast(err);
+            console.log(err);
+          });
+      })
+    }).catch((err) => {
+      this.presentToast(err)
+      console.log(err);
+    });
   }
 
   storeUserStuff(name, email, photo, load) {
