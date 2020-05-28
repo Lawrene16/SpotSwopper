@@ -140,7 +140,10 @@ export class HomePage {
   ionViewWillEnter() {
     this.ngZone.run(() => {
       this.geolocation
-        .getCurrentPosition()
+        .getCurrentPosition({
+          timeout: 30000,
+          enableHighAccuracy: true
+        })
         .then((resp) => {
           this.mylocation = {
             lat: resp.coords.latitude,
@@ -188,6 +191,7 @@ export class HomePage {
     // The map is initialized here
     this.markerslist = [];
     let latLng = new google.maps.LatLng(
+
       this.mylocation.lat,
       this.mylocation.lng
     );
